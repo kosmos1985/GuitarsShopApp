@@ -61,14 +61,15 @@
     </form>
   </div> -->
   
-  <ul class="collection" *ngIf="grades ; else noGrades">
+  <ul class="collection" *ngIf="guitars ; else noGrades">
     <ng-container *ngFor="let guitar of guitars; let i = index " >
+     
       <li class="collection-item row light-green darken-2" >
         <span class="col s10">
-          {{i+1}}. <img src="guitar.img"/>  <strong>{{guitar.name}}</strong>   
+          {{i+1}}. <img src="{{guitar.img}}"/>  <strong>{{guitar.name}}</strong>   
         </span>
         <div class="col s2 right-align">
-          <button class="btn-floating btn-small red" (click)="removeGrades(grade.id)">
+          <button class="btn-floating btn-small red" (click)="removeGrades()">
             <i class="material-icons">remove</i>
           </button>
         </div>
@@ -76,11 +77,29 @@
     </ng-container>
   </ul>
 
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Search Guitars" aria-label="Please write name searching guitar" matInput 
+            [formControl]="contactAutocompleteControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayGuitarsFn">
+          <mat-option *ngFor="let guitar of filteredGuitarsOptions | async" [value]="guitar">
+            {{guitar.name}}
+          </mat-option>
+        </mat-autocomplete>
+
+        <mat-error *ngFor="let validation of validation_msgs.contactAutocompleteControl">
+          <div *ngIf="contactAutocompleteControl.hasError(validation.type)">
+            {{validation.message}}
+          </div>
+        </mat-error>
+      </mat-form-field>
+  </form>
+
   <ng-template #noGrades>
     <h1>Twój koszyk jest pusty</h1>
   </ng-template>
 
-  <button class="btn red" (click)="clearGrades()" [disabled]="grades == 0">CLEAR GRADING LIST</button>
+  <button class="btn red" (click)="clearGrades()" [disabled]="guitars == 0">CLEAR Gutars LIST</button>
 
   <footer class="page-footer  green darken-1 mt-5">
     <div class="footer-copyright  green darken-1">
