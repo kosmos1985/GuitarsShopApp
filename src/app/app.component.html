@@ -1,83 +1,29 @@
 <div class="container">
-  <nav class="row  green darken-1">
+  <nav class="row  orange">
     <div class="nav-wrapper">
       <span class="brand-logo center">{{config?.title | uppercase}}</span>
     </div>
   </nav>
 
-  <!-- <div class="row">
-    <ng-container *ngIf="editMode; then editOn; else editOff"></ng-container>
-    <ng-template #editOff>
-      <button class="btn col s2 offset-s10" (click)=" switchEditMode()">ADD NEW GRADE</button>
-    </ng-template>
-    <ng-template #editOn>
-      <button class="btn col s2 offset-s10" (click)=" switchEditMode()">HIDE FORM</button>
-    </ng-template>
-    </div>
-
-    <div class="row light-green" *ngIf="editMode">
-      <form class="col s12"  (ngSubmit)="createGrades(formRef)" #formRef="ngForm">
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">mode_edit</i>
-            <input class="col s4" type="text" placeholder="      grade name" name="grade" [(ngModel)]="nameGrade" required maxlength="1" #name="ngModel"/>
-            <ng-container *ngIf="name.invalid && name.touched">
-              <div class="card-panel red darken-1" *ngIf="name.errors.required">
-                Field is required
-              </div>
-            </ng-container>
-          </div>
-          <div class="input-field col s6">
-            <i class="material-icons prefix">mode_edit</i>
-              <input class="col s4" type="text" placeholder="      start value %" name="start" [(ngModel)]="percentFrom" required minlength="2" #start="ngModel"/>
-              <ng-container *ngIf="start.invalid && start.touched">
-                <div class="card-panel red darken-1" *ngIf="start.errors.required">
-                  Field is required
-                </div>
-                <div class="card-panel red darken-1" *ngIf="start.errors.minlength">
-                  Number is so schort
-                </div>
-              </ng-container>
-          </div>
-          <div class="input-field col s6">
-            <i class="material-icons prefix">mode_edit</i>
-            <input class="col s4" type="text" placeholder="      end value %" name="end" [(ngModel)]="percentTo" required minlength="2" #end="ngModel"/>
-            <ng-container *ngIf="end.invalid && end.touched">
-              <div class="card-panel red darken-1" *ngIf="end.errors.required">
-                Field is required
-              </div>
-              <div class="card-panel red darken-1" *ngIf="end.errors.minlength">
-                Number is so schort
-              </div>
-            </ng-container>
-          </div>
-          <div class="input-field col s6">
-            <i class="material-icons prefix">mode_edit</i>
-            <textarea id="icon_prefix2" class="materialize-textarea" placeholder="grade description" name="description" [(ngModel)]="description"></textarea>
-          </div>
-          <button id="add" type="submit" class="waves-effect waves-light btn-large"  [disabled]="formRef.invalid">+</button>
-          <button id="reset" type="reset" class="waves-effect red darken-1 btn-large">Cancel</button>
-        </div>
-    </form>
-  </div> -->
-  
-  <ul class="collection" *ngIf="guitars ; else noGrades">
-    <ng-container *ngFor="let guitar of guitars; let i = index " >
-     
-      <li class="collection-item row light-green darken-2" >
-        <span class="col s10">
-          {{i+1}}. <img src="{{guitar.img}}"/>  <strong>{{guitar.name}}</strong>   
-        </span>
-        <div class="col s2 right-align">
-          <button class="btn-floating btn-small red" (click)="removeGrades()">
-            <i class="material-icons">remove</i>
-          </button>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
-
-  <form class="example-form">
+      <table>
+        <thead>
+          <tr>
+              <th>Index</th>
+              <th>Guitar name</th>
+              <th>Price</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let guitar of guitars; let i = index ">
+          <tr>
+            <td>{{i+1}}.</td>
+            <td><strong>{{guitar.name}}</strong></td>
+            <td><i>{{guitar.price}}</i> zł</td>
+          </tr>
+        </tbody>
+      </table>
+   
+<div class="searchbox">
+  <form class="form">
     <mat-form-field class="example-full-width">
         <input type="text" placeholder="Search Guitars" aria-label="Please write name searching guitar" matInput 
             [formControl]="contactAutocompleteControl" [matAutocomplete]="auto">
@@ -95,15 +41,11 @@
       </mat-form-field>
   </form>
 
-  <ng-template #noGrades>
-    <h1>Twój koszyk jest pusty</h1>
-  </ng-template>
-
-  <button class="btn red" (click)="clearGrades()" [disabled]="guitars == 0">CLEAR Gutars LIST</button>
-
-  <footer class="page-footer  green darken-1 mt-5">
-    <div class="footer-copyright  green darken-1">
-      <div class="container  green darken-1">
+  <button class="btn green accent-4" (click)="addGuitars()">Add to cart</button>
+</div>
+  <footer class="page-footer  orange">
+    <div class="footer-copyright  orange">
+      <div class="container  orange">
         {{config?.date | date:'short'}} {{config?.footer}}
       </div>
     </div>

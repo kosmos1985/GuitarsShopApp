@@ -18,6 +18,7 @@ function autocompleteObjectValidator(): ValidatorFn {
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,14 +39,14 @@ export class AppComponent implements OnInit, OnDestroy{
   
   public validation_msgs = {
     'contactAutocompleteControl': [
-      { type: 'invalidAutocompleteObject', message: 'Contact name not recognized. Click one of the autocomplete options.' },
-      { type: 'required', message: 'Contact is required.' }
+      { type: 'invalidAutocompleteObject', message: 'Guitar name not recognized. Click one of the autocomplete options.' },
+      { type: 'required', message: 'Guitar name is required.' }
     ]
   };
  
   ngOnInit() {
-      const sub = this.http.getGuitars().subscribe(gradesList => {
-        this.guitars = gradesList;
+      const sub = this.http.getGuitars().subscribe(guitarsList => {
+        this.guitars = guitarsList;
         console.log(this.guitars);
       }, error => console.error(error),
         ()=>console.log('Complite')
@@ -55,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy{
     this.filteredGuitarsOptions = this.contactAutocompleteControl.valueChanges.pipe(
       startWith(''),
       map(value => value ? value.name : undefined),
-      map(name => name ? this._filterGuitars(name) : this.guitars.slice())
+      map(name => name ? this._filterGuitars(name) : this.guitars)
     )
 
     
@@ -82,15 +83,10 @@ export class AppComponent implements OnInit, OnDestroy{
   clearGrades() {
     this.guitars = [];
   };
-  removeGrades() {
-    console.log('coś');
+  addGuitars() {
+    console.log();
     
-  };
-  
-  switchEditMode() {
-    this.editMode = !this.editMode;
-  };
-  
+  }
   
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
