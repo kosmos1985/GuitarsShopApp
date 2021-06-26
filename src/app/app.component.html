@@ -38,11 +38,31 @@
             {{validation.message}}
           </div>
         </mat-error>
-      </mat-form-field>
+      </mat-form-field>  
   </form>
-
-  <button class="btn green accent-4" (click)="addGuitars()">Add to cart</button>
+  <button mat-button class="btn green accent-4" (click)="addGuitars(contactAutocompleteControl.value)">Add to cart</button>
 </div>
+
+<table *ngIf="contactAutocompleteControl.value ">
+  <!-- *ngFor="let newList of cartList | keyvalue" -->
+  <ng-container  >
+  <thead>
+    <tr>
+        <th>Index</th>
+        <th>Guitar name</th>
+        <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{contactAutocompleteControl.value.id}}.</td>
+      <td><strong>{{contactAutocompleteControl.value.name}}</strong></td>
+      <td><i>{{contactAutocompleteControl.value.price}}</i> zł</td>
+    </tr>
+  </tbody>
+</ng-container>
+</table>
+
   <footer class="page-footer  orange">
     <div class="footer-copyright  orange">
       <div class="container  orange">

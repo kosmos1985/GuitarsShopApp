@@ -26,11 +26,12 @@ function autocompleteObjectValidator(): ValidatorFn {
 })
 export class AppComponent implements OnInit, OnDestroy{
   guitars: Guitars[];
-  editMode = false;
+  cartList: Guitars[]=[];
  
   config: { [key: string]: string } = null;
   public filteredGuitarsOptions: Observable<Guitars[]>
   private subscriptions = new Subscription();
+  
  
   constructor(private http: GuitarsService) { };
   
@@ -80,13 +81,13 @@ export class AppComponent implements OnInit, OnDestroy{
     return guitar ? guitar.name : undefined
   }
   
-  clearGrades() {
-    this.guitars = [];
+  
+  addGuitars(value) {
+    console.log(value);
+    const newList = this.cartList.concat(value);
+    // this.cartList = value;
+    return console.log(newList);
   };
-  addGuitars() {
-    console.log();
-    
-  }
   
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

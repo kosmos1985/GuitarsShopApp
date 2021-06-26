@@ -10,14 +10,14 @@ import { GuitarsService } from './service/guitars.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatNativeDateModule } from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 registerLocaleData(localePl);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule,ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule],
+  imports: [BrowserModule, FormsModule,ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   providers: [GuitarsService],
   bootstrap: [AppComponent],
 })
