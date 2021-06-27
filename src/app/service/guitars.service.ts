@@ -4,7 +4,7 @@ import { Observable, Subject, of } from 'rxjs';
 import { tap, toArray,mergeMap, map } from 'rxjs/operators';
 
 import { Guitars } from '../models/guitars';
-import { v4 as uuid } from 'uuid';
+
 
 
 

@@ -84,19 +84,9 @@ export class AppComponent implements OnInit, OnDestroy{
   }
   
   
-  addGuitars(value: Guitars[], amount) {
+  addGuitars(value: Guitars, amount) {
   this.http.addToCart(value, amount);
   };
-  // addGuitars(value: Guitars[]){
-  //   // this.http.addItem(value);
-  //   this.cartList = value;
-  //   const valueObj = this.cartList;
-  //   const cartArray = Object.keys(valueObj).map(index=>{
-  //     let obj = valueObj[index];
-  //     return  obj;
-  //   })
-  //   ;
-  // };
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

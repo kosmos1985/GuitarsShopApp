@@ -8,7 +8,7 @@ import { GuitarsService } from '../service/guitars.service';
 })
 export class CartComponent implements OnInit {
   cartItems = [];
-  total = 0;
+  total:any = 0;
   constructor(private http: GuitarsService) { }
 
   ngOnInit() {
@@ -22,14 +22,14 @@ export class CartComponent implements OnInit {
 
     this.http.newTotal.subscribe(
       (data) => {
-        this.total = data.total;
-        console.log(this.total);
+        this.total = data;
+        console.log(this.total.total);
       }
     );
   };
     
     printCart() {
-    console.log(this.http.cartItems);
-  }
+      console.log(`Sum to be paid: ${this.total.total} zł`, this.http.cartItems );
+  };
 
 }
