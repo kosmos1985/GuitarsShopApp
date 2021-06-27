@@ -18,8 +18,6 @@ export class CartComponent implements OnInit {
         (cartItems) => {this.cartItems = cartItems}
     );
 
-    // this.total = this.http.total;
-
     this.http.newTotal.subscribe(
       (data) => {
         this.total = data;

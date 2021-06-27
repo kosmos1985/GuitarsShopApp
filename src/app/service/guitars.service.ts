@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
-import { tap, toArray,mergeMap, map } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { Guitars } from '../models/guitars';
-
-
 
 
 @Injectable({
@@ -31,7 +29,7 @@ export class GuitarsService {
  
    getCartItems(): Observable<{item: Guitars, amount: number}[]> {
     return of(this.cartItems)
-  }
+  };
 
   addToCart(item: Guitars, amount: number) {
     let m = this.cartItems.find((cartItem)=>{return cartItem.item == item});
