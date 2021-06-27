@@ -1,0 +1,14 @@
+<li class="container card-panel cyan lighten-3">
+  <div>
+    <div>
+      {{cartItem.item.name}}
+      <span class="value card-panel  light-blue lighten-3">{{cartItem.item.price * cartItem.amount}} zł</span>
+    </div>
+    <div>
+      <button class="btn" (click)="decrease(cartItem)">-</button>
+      <span class="amount">{{cartItem.amount}}</span>
+      <button class="btn" (click)="increase(cartItem)">+</button>
+      
+    </div>
+  </div>
+</li>

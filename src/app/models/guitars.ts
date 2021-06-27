@@ -4,5 +4,6 @@ export interface Guitars {
     name: string,
     price: number,
     img?: string,
-    id?: number
+    id?: number,
+    uuid?: any;
 }

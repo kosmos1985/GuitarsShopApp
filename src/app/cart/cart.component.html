@@ -1,0 +1,14 @@
+<div class="container card-panel teal lighten-2">
+<h3>Cart:</h3>
+  <ul >
+    <app-cart-item 
+      *ngFor="let item of cartItems"
+      [cartItem] = "item"></app-cart-item>
+  </ul>
+
+  Total: {{ total }} zł
+
+  <button class="btn waves-effect waves-light" type="submit" name="action" (click)="printCart()">SUBMIT
+  <i class="material-icons right">send</i>
+  </button>  
+  </div>

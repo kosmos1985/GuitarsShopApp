@@ -4,6 +4,7 @@ import { Guitars } from './models/guitars';
 import { Observable, Subscription } from 'rxjs';
 import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
+// import{NewGuitars} from './service/guitars.service';
 
 
 function autocompleteObjectValidator(): ValidatorFn {
@@ -26,7 +27,8 @@ function autocompleteObjectValidator(): ValidatorFn {
 })
 export class AppComponent implements OnInit, OnDestroy{
   guitars: Guitars[];
-  cartList: Guitars[]=[];
+  cartList: Guitars[];
+  amount: number = 1;
  
   config: { [key: string]: string } = null;
   public filteredGuitarsOptions: Observable<Guitars[]>
@@ -82,13 +84,20 @@ export class AppComponent implements OnInit, OnDestroy{
   }
   
   
-  addGuitars(value) {
-    console.log(value);
-    const newList = this.cartList.concat(value);
-    // this.cartList = value;
-    return console.log(newList);
+  addGuitars(value: Guitars[], amount) {
+  this.http.addToCart(value, amount);
   };
-  
+  // addGuitars(value: Guitars[]){
+  //   // this.http.addItem(value);
+  //   this.cartList = value;
+  //   const valueObj = this.cartList;
+  //   const cartArray = Object.keys(valueObj).map(index=>{
+  //     let obj = valueObj[index];
+  //     return  obj;
+  //   })
+  //   ;
+  // };
+
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   };
